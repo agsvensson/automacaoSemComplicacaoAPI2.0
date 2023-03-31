@@ -1,12 +1,12 @@
 package maps;
 
-import javax.annotation.CheckReturnValue;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class FilmesMap {
+    public static int id;
     private static Map<String, String> header;
     private static Map<String, Object> filme;
     private static Map<String, Object> categoria1;
@@ -70,11 +70,7 @@ public class FilmesMap {
         filme = new HashMap<>();
         filme.put("nome", "Alerta Vermelho");
         filme.put("descricao", "Um alerta vermelho da Interpol e emitido " +
-                "e o agente do FBI John Hartley assume o caso. Durante sua " +
-                "busca, ele se vê diante de um assalto ousado e e forcado " +
-                "a se aliar ao maior ladrao de arte da historia, Nolan Booth, " +
-                "para capturar a ladra de arte mais procurada do mundo atualmente, " +
-                "Sarah Black.");
+                "e o agente do FBI John Hartley assume o caso.");
         filme.put("duracao", 1.35);
         filme.put("categorias", listCategoria);
         filme.put("plataformas", listPlataforma);
