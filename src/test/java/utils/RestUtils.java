@@ -44,4 +44,14 @@ public class RestUtils {
         // pode ser usado .thenReturn() para substituir o then, extract, response;
     }
 
+    public static Response post(Map<String, String> header, Object json, ContentType contentType, String endpoint) {
+        return response = RestAssured.given()
+                .relaxedHTTPSValidation()
+                .contentType(contentType)
+                .headers(header)
+                .body(json)
+                .when()
+                .post(endpoint)
+                .thenReturn();
+    }
 }
