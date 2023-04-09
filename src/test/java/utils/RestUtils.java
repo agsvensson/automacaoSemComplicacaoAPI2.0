@@ -31,6 +31,20 @@ public class RestUtils {
                 .thenReturn();
     }
 
+    public static Response get(Map<String, String> header,
+                               Map<String, String> param, String endpoint) {
+        return response = RestAssured.given()
+                .relaxedHTTPSValidation()
+                .headers(header)
+                .params(param)
+                .log().all()
+                .when()
+                .get(endpoint)
+                .then()
+                .log().all()
+                .extract().response();
+    }
+
     public static Response post(Object json, ContentType contentType, String endpoint) {
         return response = RestAssured.given()
                 .relaxedHTTPSValidation()
@@ -38,20 +52,41 @@ public class RestUtils {
                 .body(json)
                 .when()
                 .post(endpoint)
-                .then()
-                .extract()
-                .response();
-        // pode ser usado .thenReturn() para substituir o then, extract, response;
+                .thenReturn();
+        // pode ser usado os 3 abaixo no lugar do .thenReturn(), se usar .log().all() tem q usar eles
+//                .then()
+//                .extract()
+//                .response()
     }
 
-    public static Response post(Map<String, String> header, Object json, ContentType contentType, String endpoint) {
+    public static Response post(Map<String, String> header, Object json,
+                                ContentType contentType, String endpoint) {
         return response = RestAssured.given()
                 .relaxedHTTPSValidation()
                 .contentType(contentType)
                 .headers(header)
+                .log().all()
                 .body(json)
                 .when()
                 .post(endpoint)
-                .thenReturn();
+                .then()
+                .log().all()
+                .extract().response();
     }
+
+    public static Response put(Map<String, String> header, Object json,
+                               ContentType contentType, String endpoint) {
+        return response = RestAssured.given()
+                .relaxedHTTPSValidation()
+                .contentType(contentType)
+                .headers(header)
+                .log().all()
+                .body(json)
+                .when()
+                .put(endpoint)
+                .then()
+                .log().all()
+                .extract().response();
+    }
+
 }
