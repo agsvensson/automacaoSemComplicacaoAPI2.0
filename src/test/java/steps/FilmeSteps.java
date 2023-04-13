@@ -46,4 +46,8 @@ public class FilmeSteps {
         RestUtils.put(FilmesMap.getHeader(), FilmesMap.getFilme(), ContentType.JSON, "filmes/" + FilmesMap.id);
     }
 
+    @Quando("realizdo uma requisicao do tipo DELETE de Filme")
+    public void realizdoUmaRequisicaoDoTipoDELETEDeFilme() {
+        RestUtils.delete(FilmesMap.getHeader(), "filmes/" + FilmesMap.id);
+    }
 }
