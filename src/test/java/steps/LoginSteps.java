@@ -22,11 +22,10 @@ public class LoginSteps {
     }
 
     @Dado("que tenha um payload da API de login com as seguintes informacoes")
-    public void queTenhaUmPayloadDaAPIDeLoginComAsSeguintesInformacoes(Map<String, Object> map) {
+    public void queTenhaUmPayloadDaAPIDeLoginComAsSeguintesInformacoes(Map<String, String> map) {
         LoginMap.initLogin();
         LoginMap.getLogin().putAll(map);
     }
-
 
     @Entao("armazeno o token que recebo do response de Login")
     public void armazenoOTokenQueReceboDoResponseDeLogin() {
