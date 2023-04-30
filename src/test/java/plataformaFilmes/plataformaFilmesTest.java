@@ -20,23 +20,19 @@ public class plataformaFilmesTest {
 
     @Test
     public void validarLogin() {
-        RestUtils.setBaseURI("http://localhost:8080/");
-
         String json = "{" +
                 "    \"email\": \"aluno@email.com\"," +
                 "    \"senha\": \"123456\"" +
                 "}";
 
+        RestUtils.post(json, ContentType.JSON, "auth");
 
-        Response response = RestUtils.post(json, ContentType.JSON, "auth");
-
-        assertEquals(200, response.statusCode());
-        token = response.jsonPath().get("token");
+        assertEquals(200, RestUtils.getResponse().getStatusCode());
+        String token = RestUtils.getResponse().jsonPath().get("token");
     }
 
     @BeforeAll
     public static void validarLoginMap() {
-        RestUtils.setBaseURI("http://localhost:8080/");
         LoginMap.initLogin();
 
         Response response = RestUtils.post(LoginMap.getLogin(), ContentType.JSON, "auth");
@@ -52,13 +48,11 @@ public class plataformaFilmesTest {
 
         Response response = RestUtils.get(header, "categorias");
         assertEquals(200, response.statusCode());
-
         System.out.println(response.jsonPath().get().toString());
 
         assertEquals("Terror", response.jsonPath().get("tipo[2]"));
-
         List<String> listTipo = response.jsonPath().get("tipo");
-        assertTrue(listTipo.contains("Terror"), "Não foi encontrado a categoria Terror na lista de categorias");
+        assertTrue(listTipo.contains("Terror"));
     }
 
 }
